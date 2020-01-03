@@ -25,7 +25,6 @@ func main() {
 }
 
 func hashHandler(w http.ResponseWriter, r *http.Request) {
-	fmt.Println("inside handler")
 	w.Header().Set("Access-Control-Allow-Origin", "*")
 	if r.Method == http.MethodOptions {
 		return
@@ -36,9 +35,7 @@ func hashHandler(w http.ResponseWriter, r *http.Request) {
 		fmt.Println(err)
 		return
 	}
-	fmt.Println("got request: " + string(body))
 	hashed := string(hash(body))
-	fmt.Printf("Putting hash: %s in map with value: %s", string(hashed), string(body))
 	hashes[hashed] = string(body)
 	w.Write([]byte(hashed))
 }
@@ -50,8 +47,6 @@ func unhashHandler(w http.ResponseWriter, r *http.Request) {
 	}
 	hash := mux.Vars(r)["hash"]
 
-	fmt.Println("Got hash, extracting URL: " + hash)
-	fmt.Printf("Returning value: %s", hashes[hash])
 	http.Redirect(w, r, hashes[hash], 302)
 }
 
