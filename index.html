@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script>
+$(document).ready(function(){
+  $("#hashit").click(function(){
+
+    var data = $("#url").val()
+    console.log("data: " + data)
+
+    $.ajax({
+        type: "POST",
+        url: "http://localhost:8080/hash", 
+        data: data,
+        crossDomain: true, 
+        success: function(result){
+            $("#div1").html(result);
+            console.log(result)
+            $("#hash").text(result)
+    }});
+  });
+});
+
+</script>
+</head>
+<body>
+
+<input type="text" name="url" id="url" value="URL to hash"/>
+<button id="hashit">Hash it!</button>
+<p id="hash" name="hash"></p>
+</body>
+</html>
