@@ -8,5 +8,7 @@ Url shortener API with simple frontend.
 
 # Endpoints
 `/hash` - Hash your URL and store mapping in the URL shortener
+
 `/unhash` - Retrieve mapped URL and redirect to it
+
 `/health` - health endpoint hardcoded to run 200 OK
